@@ -13,23 +13,24 @@ $fl = new Functions();
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/materialize.min.js"></script>
         <style>
-            #image {
-                width: 100%;
-                height: 450px;
-                background-image: url("img/header.jpg");
-                background-repeat: no-repeat;
-                background-size: 100% 450px;
-                margin-bottom: 4%;
+            .parallax-container {
+                height: 500px;
             }
 
             .nav-wrapper {
-                background: #FEB980 !important;
+                background: #36163F !important;
             }
             nav li a {
-                color: #373737;
+                color: #F5BA97;
+            }
+            #link {
+                color: #36163F;
+            }
+            #cc {
+                color: #36163F;
             }
             nav li a:hover {
-                background: #FD7A71;
+                background: #71476E;
             }
         </style>
     </head>
@@ -45,10 +46,16 @@ $fl = new Functions();
                 </ul>
             </div>
         </nav>
-        <div id="image"></div>
+        <div class="parallax-container" style="margin-bottom: 3%;">
+            <div class="parallax"><img src="img/header.jpg"></div>
+            <div class="caption center-align" style="margin-top: 5%;">
+                <h3>Les musées de nos Régions</h3>
+                <h5 id="cc" >Retrouvez nos beaux musées sur notre site</h5>
+            </div>
+        </div>
         <div class="container">
             <div class="row">
-                <h2 class="center">Nos derniers ajouts ....</h2>
+                <h4 class="center header">Nos derniers ajouts ....</h4>
                 <?php
                     $musee = $fl->getFourMusees();
                     for ($i = 0; $i < sizeof($musee); $i++):
@@ -60,13 +67,13 @@ $fl = new Functions();
                                     <p><?php echo $musee[$i]["adr"]; ?> <br /> <?php echo $musee[$i]["cp"]; ?> <?php echo $musee[$i]["ville"]; ?></p>
                                 </div>
                                 <div class="card-action">
-                                    <a class="waves-effect waves-light btn" href="#modal<?php echo $i; ?>">En apprendre plus</a>
+                                    <a id="link" href="#modal<?php echo $i; ?>">En apprendre plus</a>
                                 </div>
                             </div>
                         </div>
                         <div id="modal<?php echo $i; ?>" class="modal">
                             <div class="modal-content">
-                                <h4><?php echo $musee[$i]["nom_du_musee"]; ?></h4>
+                                <h5><?php echo $musee[$i]["nom_du_musee"]; ?></h5>
                                 <?php echo $fl->getImage($musee[$i]["nom_du_musee"] . " " . $musee[$i]["ville"]); ?>
                                 <p><strong>Adresse:</strong> <?php echo $musee[$i]["adr"]; ?>, <?php echo $musee[$i]["cp"]; ?> <?php echo $musee[$i]["ville"]; ?></p>
                                 <p><strong>Téléphone:</strong> 0<?php echo $musee[$i]["telephone"]; ?></p>
@@ -84,6 +91,7 @@ $fl = new Functions();
     <script>
         $(document).ready(function(){
             $('.modal').modal();
+            $('.parallax').parallax();
         });
     </script>
     <footer></footer>
