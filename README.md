@@ -4,7 +4,10 @@ This project has for goal to get the informations of a specific museum with his 
 
 <strong>Note:</strong> Please read the "<a href="#important">important</a>" part before doing any actions with this project.
 <h1>Setup</h1>
-You may have to edit the index.php and search.php files to the database connection.
+You may have to edit the index.php and search.php files for the database connection with your informations.
+```
+$db = new Connection("localhost", "root", "", "musees");
+```
 <h1>Features</h1>
 We have added some options on search.php to search depending on:
 <ul>
