@@ -24,7 +24,7 @@ We are using these technologies :
 
 All files needed are uploaded on this Github. (Even the .sql ^_^)
 
-About the registered images in the database; It may be under copyright so be careful if you are going to use it on a server. (Yes, we got it from <a href="http://google.com">Google</a>.)
+About the registered images in the database; It may be under copyright so be careful if you are going to use it on a server. Yes, we got the images from <a href="http://google.com">Google</a>.
 
 <h1>Questions? Issues? Bugs?</h1>
 
