@@ -12,7 +12,7 @@ $fl = new Functions();
         <link rel="stylesheet" href="css/materialize.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/materialize.min.js"></script>
-        <style>
+    <style>
             .parallax-container {
                 height: 500px;
             }
@@ -31,6 +31,62 @@ $fl = new Functions();
             }
             nav li a:hover {
                 background: #71476E;
+
+            }
+            .modal
+            {
+                width : 450px;
+                height : 750px;
+            }
+            .responsive-img
+            {
+                margin : 0 auto;
+            }
+            h4
+            {
+               font-weight:  bold;
+               
+               
+               
+            }
+            .responsive-img
+            {
+                margin : 0 auto;
+            }
+            h4
+            {
+               font-weight:  bold;
+               
+               
+               
+            }
+            img
+            {
+                magin-left : 25%;
+            }
+             h5
+            {
+               font-style: bold;
+               
+               
+               
+            }
+            .card-title 
+            {
+                height : 100px;
+                line-height: 80px;
+                vertical-align: middle;
+                font-size : 40px;
+            }
+            .card .card-title
+            {
+                font-size: 25px;
+                height : 80px;
+                
+                vertical-align: middle;
+               
+                font-style: : bold;
+                
             }
         </style>
     </head>
