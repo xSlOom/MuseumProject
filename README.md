@@ -15,6 +15,8 @@ $db = new Connection("localhost", "root", "", "musees");
 <strong>blank space </strong>: Your password<br />
 <strong>musees </strong>: Your main database
 
+And after run it on your browser!
+
 <h1>Features</h1>
 We have added some options on search.php to search depending on:
 <ul>
