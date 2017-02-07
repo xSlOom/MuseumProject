@@ -2,7 +2,7 @@
 
 This project has for goal to get the informations of a specific museum with his address, number phone, city from a database.
 
-<strong>Note:</strong> Please read all the doc before doing any actions with this project.
+<strong>Note:</strong> Please read the "<a href="#important">important</a>" part before doing any actions with this project.
 
 <h1>Features</h1>
 We have added some options on search.php to search depending on:
@@ -22,7 +22,7 @@ We are using these technologies :
   <li><a href="https://developers.google.com/maps/?hl=fr">Google Map API</a></li>
 </ul>
 
-<h1>Important...</h1>
+<h1 id="important">Important...</h1>
 
 All files needed are uploaded on this Github. (Even the .sql ^_^)
 
