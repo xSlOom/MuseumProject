@@ -2,6 +2,7 @@
 
 This project has for goal to get the informations of a specific museum with his address, number phone, city from a database.
 
+<h1>Features</h1>
 We have added some options on search.php to search depending on:
 <ul>
   <li>The city</li>
@@ -10,6 +11,7 @@ We have added some options on search.php to search depending on:
   <li>Postal code</li>
 </ul>
 
+<h1>Technologies</h1>
 We are using these technologies :
 <ul>
   <li><a href="http://materializecss.com/">Material Design</a></li>
