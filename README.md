@@ -1,6 +1,6 @@
 # MuseumProject
 
-This project has for goal to get the informations of a specific museum with his address, number phone, city from a database.
+This project has for goal to get the informations of a specific museum with his address, number phone, city from a database that we have found on <a href="https://www.data.gouv.fr/fr/datasets/liste-et-localisation-des-musees-de-france/">there</a>. (xlsx format and reconverted into csv format)
 
 <strong>Note:</strong> Please read the "<a href="#important">important</a>" part before doing any actions with this project.
 <h1>Setup</h1>
