@@ -9,36 +9,20 @@ $fl = new Functions();
     <head>
         <meta charset="UTF-8" />
         <title>Les musées de nos Régions</title>
+        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/materialize.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E"></script>
+        <script type="text/javascript" src="js/jquery.googlemap.js"></script>
         <script src="js/materialize.min.js"></script>
-        <style>
-            .parallax-container {
-                height: 500px;
-            }
-
-            .nav-wrapper, .page-footer {
-                background: #36163F !important;
-            }
-            nav li a {
-                color: #F5BA97;
-            }
-            #cc {
-                color: #36163F;
-            }
-            nav li a:hover {
-                background: #71476E;
-            }
-        </style>
     </head>
     <body>
         <nav>
             <div class="nav-wrapper">
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="#">Accueil</a></li>
-                    <li><a href="#">Liste des musées</a></li>
+                    <li><a href="index.php">Accueil</a></li>
+                    <li><a href="search.php">Liste des musées</a></li>
                     <li><a href="#">Ajouter un musée</a></li>
-                    <li></li>
                 </ul>
             </div>
         </nav>
@@ -63,6 +47,8 @@ $fl = new Functions();
                             <label for="dep">Rechercher par département</label>
                             <input type="radio" class="filled-in" id="dep1" name="cdp" />
                             <label for="dep1">Rechercher par code postal</label>
+                            <input type="radio" class="filled-in" id="dep2" name="vl" />
+                            <label for="dep2">Rechercher par ville</label>
                         </div>
                     </div>
                 </form>
@@ -73,6 +59,8 @@ $fl = new Functions();
                             $data   = $fl->searchByDep($_POST["nom"]);
                         elseif (isset($_POST["cdp"])):
                             $data   = $fl->searchByCdp($_POST["nom"]);
+                        elseif (isset($_POST["vl"])):
+                            $data   = $fl->searchByCity($_POST["nom"]);
                         else:
                             $data   = $fl->searchAll($_POST["nom"]);
                         endif;
@@ -89,19 +77,19 @@ $fl = new Functions();
                             <p><?php echo $data[$i]["cp"]; ?> <?php echo $data[$i]["ville"]; ?></p>
                         </div>
                         <div class="card-action">
-                            <a id="link" href="#modal<?php echo $i; ?>">En apprendre plus</a>
+                            <a id="link<?php echo $i; ?>" onClick="reply_click(this.id)" href="#modal<?php echo $i; ?>">En apprendre plus</a>
                         </div>
                     </div>
                 </div>
                 <div id="modal<?php echo $i; ?>" class="modal">
                     <div class="modal-content">
-                        <h5><?php echo $data[$i]["nom_du_musee"]; ?></h5>
+                        <h5 id="musee<?php echo $i ; ?>"><?php echo $data[$i]["nom_du_musee"]; ?></h5>
                         <img src="<?php echo $data[$i]["lien_image"]; ?>" />
-                        <p><strong>Adresse:</strong> <?php echo !empty($data[$i]["adresse"]) ? $data[$i]["adresse"] . "," : ""; ?><?php echo $data[$i]["cp"]; ?> <?php echo $data[$i]["ville"]; ?></p>
+                        <p id="adress<?php echo $i ; ?>"><strong>Adresse:</strong> <?php echo !empty($data[$i]["adresse"]) ? $data[$i]["adresse"] . "," : ""; ?><?php echo $data[$i]["cp"]; ?> <?php echo $data[$i]["ville"]; ?></p>
                         <p><strong>Téléphone:</strong> <?php echo $data[$i]["telephone"]; ?></p>
                         <p><strong>Ouverture:</strong> <?php echo $data[$i]["periode_ouverture"]; ?></p>
                         <p><strong>Site web:</strong> <?php echo !empty($data[$i]["site_web"]) ? $fl->text2Link($data[$i]["site_web"]) : "Aucun site"; ?></p>
-                        <p><?php echo $fl->loadMap($data[$i]["nom_du_musee"]. "," . $data[$i]["ville"]); ?></p>
+                        <div id="map<?php echo $i; ?>" style="width: 100%; height: 300px;"></div>
                     </div>
                     <div class="modal-footer">
                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
@@ -115,7 +103,29 @@ $fl = new Functions();
         </div>
     </body>
     <script>
+        function reply_click(id) {
+            var nid= id.replace( /^\D+/g, '');
+            $(function() {
+                var adress = $("#adress" + nid + "").html().split('</strong>')[1].replace(/ /g, '+');
+                var musee = $("#musee" + nid + "").html();
+                console.log(musee);
+                $.ajax({
+                    url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + adress + "&key=AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E",
+                    success: function(result){
+                        console.log(result);
+                        var localisation = result.results[0]["geometry"]["location"];
+                        $("#map" + nid).googleMap();
+                        $("#map" + nid).addMarker({
+                            coords: [localisation["lat"], localisation["lng"]], // GPS coords
+                            title: '<h5>' + musee + ' </h5>', // Title
+                            text:  $("#adress" + nid + "").html().split('</strong>')[1] // HTML content
+                        });
+                    }
+                });
+            })
+        }
         $(document).ready(function(){
+
             $('.modal').modal();
             $('.parallax').parallax();
         });
