@@ -75,11 +75,9 @@ $fl = new Functions();
             $(function() {
                 var adress = $("#adress" + nid + "").html().split('</strong>')[1].replace(/ /g, '+');
                 var musee = $("#musee" + nid + "").html();
-                console.log(musee);
                 $.ajax({
                     url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + adress + "&key=AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E",
                     success: function(result){
-                        console.log(result);
                         var localisation = result.results[0]["geometry"]["location"];
                         $("#map" + nid).googleMap();
                         $("#map" + nid).addMarker({
@@ -100,7 +98,7 @@ $fl = new Functions();
     <footer class="page-footer">
         <div class="footer-copyright">
             <div class="container">
-                © 2014 Copyright Text
+                © 2017
             </div>
         </div>
     </footer>
