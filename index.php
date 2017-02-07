@@ -35,7 +35,7 @@ $fl = new Functions();
         </div>
         <div class="container">
             <div class="row">
-                <h4 class="center header">Nos derniers ajouts ....</h4>
+                <h4 class="center header">Quelques musées ...</h4>
                 <?php
                     $musee = $fl->getFourMusees();
                     for ($i = 0; $i < sizeof($musee); $i++):
@@ -56,7 +56,7 @@ $fl = new Functions();
                         <h5 id="musee<?php echo $i; ?>"><?php echo $musee[$i]["nom_du_musee"]; ?></h5>
                         <img src="<?php echo $musee[$i]["lien_image"]; ?>" />
                         <p id="adress<?php echo $i ; ?>"><strong>Adresse:</strong> <?php echo !empty($musee[$i]["adresse"]) ? $musee[$i]["adresse"] . "," : ""; ?><?php echo $musee[$i]["cp"]; ?> <?php echo $musee[$i]["ville"]; ?></p>
-                        <p><strong>Téléphone:</strong> 0<?php echo $musee[$i]["telephone"]; ?></p>
+                        <p><strong>Téléphone:</strong> <?php echo !empty($musee[$i]["telephone"]) ? $musee[$i]["telephone"] : "Pas de téléphone"; ?></p>
                         <p><strong>Ouverture:</strong> <?php echo !empty($musee[$i]["periode_ouverture"]) ? $musee[$i]["periode_ouverture"] : "Y'a rien"; ?></p>
                         <p><strong>Site web:</strong> <?php echo !empty($musee[$i]["site_web"]) ? $fl->text2Link($musee[$i]["site_web"]) : "Aucun site"; ?></p>
                         <div id="map<?php echo $i; ?>" style="width: 100%; height: 300px;"></div>
@@ -75,6 +75,7 @@ $fl = new Functions();
             $(function() {
                 var adress = $("#adress" + nid + "").html().split('</strong>')[1].replace(/ /g, '+');
                 var musee = $("#musee" + nid + "").html();
+                console.log(musee);
                 $.ajax({
                     url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + adress + "&key=AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E",
                     success: function(result){
