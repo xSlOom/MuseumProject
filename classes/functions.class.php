@@ -4,7 +4,7 @@ class Functions {
 
     public function getFourMusees() {
         global $db;
-        $query  = $db->pdo->query("SELECT * FROM musee ORDER BY id desc LIMIT 0,4");
+        $query  = $db->pdo->query("SELECT * FROM musee ORDER BY  rand() LIMIT 0,4");
         $fetch  = $query->fetchAll();
         return $fetch;
     }
