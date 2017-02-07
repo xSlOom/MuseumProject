@@ -86,7 +86,7 @@ $fl = new Functions();
                         <h5 id="musee<?php echo $i ; ?>"><?php echo $data[$i]["nom_du_musee"]; ?></h5>
                         <img src="<?php echo $data[$i]["lien_image"]; ?>" />
                         <p id="adress<?php echo $i ; ?>"><strong>Adresse:</strong> <?php echo !empty($data[$i]["adresse"]) ? $data[$i]["adresse"] . "," : ""; ?><?php echo $data[$i]["cp"]; ?> <?php echo $data[$i]["ville"]; ?></p>
-                        <p><strong>Téléphone:</strong> <?php echo $data[$i]["telephone"]; ?></p>
+                        <p><strong>Téléphone:</strong> <?php echo !empty($data[$i]["telephone"]) ? $data[$i]["telephone"] : "Pas de téléphone"; ?></p>
                         <p><strong>Ouverture:</strong> <?php echo $data[$i]["periode_ouverture"]; ?></p>
                         <p><strong>Site web:</strong> <?php echo !empty($data[$i]["site_web"]) ? $fl->text2Link($data[$i]["site_web"]) : "Aucun site"; ?></p>
                         <div id="map<?php echo $i; ?>" style="width: 100%; height: 300px;"></div>
@@ -112,6 +112,7 @@ $fl = new Functions();
                 $.ajax({
                     url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + adress + "&key=AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E",
                     success: function(result){
+                        console.log(result);
                         var localisation = result.results[0]["geometry"]["location"];
                         $("#map" + nid).googleMap();
                         $("#map" + nid).addMarker({
