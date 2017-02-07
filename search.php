@@ -8,6 +8,7 @@ $fl = new Functions();
 <html>
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>Les musées de nos Régions</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/materialize.min.css">
@@ -133,7 +134,7 @@ $fl = new Functions();
     <footer class="page-footer">
         <div class="footer-copyright">
             <div class="container">
-                © 2017
+                © 2014 Copyright Text
             </div>
         </div>
     </footer>
