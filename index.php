@@ -9,95 +9,20 @@ $fl = new Functions();
     <head>
         <meta charset="UTF-8" />
         <title>Les musées de nos Régions</title>
+        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/materialize.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E"></script>
+        <script type="text/javascript" src="js/jquery.googlemap.js"></script>
         <script src="js/materialize.min.js"></script>
-    <style>
-            .parallax-container {
-                height: 500px;
-            }
-
-            .nav-wrapper, .page-footer {
-                background: #36163F !important;
-            }
-            nav li a {
-                color: #F5BA97;
-            }
-            #link {
-                color: #36163F;
-            }
-            #cc {
-                color: #36163F;
-            }
-            nav li a:hover {
-                background: #71476E;
-
-            }
-            .modal
-            {
-                width : 450px;
-                height : 750px;
-            }
-            .responsive-img
-            {
-                margin : 0 auto;
-            }
-            h4
-            {
-               font-weight:  bold;
-               
-               
-               
-            }
-            .responsive-img
-            {
-                margin : 0 auto;
-            }
-            h4
-            {
-               font-weight:  bold;
-               
-               
-               
-            }
-            img
-            {
-                magin-left : 25%;
-            }
-             h5
-            {
-               font-style: bold;
-               
-               
-               
-            }
-            .card-title 
-            {
-                height : 100px;
-                line-height: 80px;
-                vertical-align: middle;
-                font-size : 40px;
-            }
-            .card .card-title
-            {
-                font-size: 25px;
-                height : 80px;
-                
-                vertical-align: middle;
-               
-                font-style: : bold;
-                
-            }
-        </style>
     </head>
     <body>
         <nav>
             <div class="nav-wrapper">
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="#">Accueil</a></li>
-                    <li><a href="#">Liste des musées</a></li>
+                    <li><a href="index.php">Accueil</a></li>
+                    <li><a href="search.php">Liste des musées</a></li>
                     <li><a href="#">Ajouter un musée</a></li>
-                    <li></li>
                 </ul>
             </div>
         </nav>
@@ -122,19 +47,19 @@ $fl = new Functions();
                             <p><?php echo $musee[$i]["adresse"]; ?> <br /> <?php echo $musee[$i]["cp"]; ?> <?php echo $musee[$i]["ville"]; ?></p>
                         </div>
                         <div class="card-action">
-                            <a id="link" href="#modal<?php echo $i; ?>">En apprendre plus</a>
+                            <a id="link<?php echo $i; ?>" onClick="reply_click(this.id)" href="#modal<?php echo $i; ?>">En apprendre plus</a>
                         </div>
                     </div>
                 </div>
                 <div id="modal<?php echo $i; ?>" class="modal">
                     <div class="modal-content">
-                        <h5><?php echo $musee[$i]["nom_du_musee"]; ?></h5>
+                        <h5 id="musee<?php echo $i; ?>"><?php echo $musee[$i]["nom_du_musee"]; ?></h5>
                         <img src="<?php echo $musee[$i]["lien_image"]; ?>" />
-                        <p><strong>Adresse:</strong> <?php echo !empty($musee[$i]["adresse"]) ? $musee[$i]["adresse"] . "," : ""; ?><?php echo $musee[$i]["cp"]; ?> <?php echo $musee[$i]["ville"]; ?></p>
+                        <p id="adress<?php echo $i ; ?>"><strong>Adresse:</strong> <?php echo !empty($musee[$i]["adresse"]) ? $musee[$i]["adresse"] . "," : ""; ?><?php echo $musee[$i]["cp"]; ?> <?php echo $musee[$i]["ville"]; ?></p>
                         <p><strong>Téléphone:</strong> 0<?php echo $musee[$i]["telephone"]; ?></p>
                         <p><strong>Ouverture:</strong> <?php echo !empty($musee[$i]["periode_ouverture"]) ? $musee[$i]["periode_ouverture"] : "Y'a rien"; ?></p>
                         <p><strong>Site web:</strong> <?php echo !empty($musee[$i]["site_web"]) ? $fl->text2Link($musee[$i]["site_web"]) : "Aucun site"; ?></p>
-                        <p><?php echo $fl->loadMap($musee[$i]["nom_du_musee"]. "," . $musee[$i]["ville"]); ?></p>
+                        <div id="map<?php echo $i; ?>" style="width: 100%; height: 300px;"></div>
                     </div>
                     <div class="modal-footer">
                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
@@ -145,7 +70,29 @@ $fl = new Functions();
         </div>
     </body>
     <script>
+        function reply_click(id) {
+            var nid= id.replace( /^\D+/g, '');
+            $(function() {
+                var adress = $("#adress" + nid + "").html().split('</strong>')[1].replace(/ /g, '+');
+                var musee = $("#musee" + nid + "").html();
+                console.log(musee);
+                $.ajax({
+                    url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + adress + "&key=AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E",
+                    success: function(result){
+                        console.log(result);
+                        var localisation = result.results[0]["geometry"]["location"];
+                        $("#map" + nid).googleMap();
+                        $("#map" + nid).addMarker({
+                            coords: [localisation["lat"], localisation["lng"]], // GPS coords
+                            title: '<h5>' + musee + ' </h5>', // Title
+                            text:  $("#adress" + nid + "").html().split('</strong>')[1] // HTML content
+                        });
+                    }
+                });
+            })
+        }
         $(document).ready(function(){
+
             $('.modal').modal();
             $('.parallax').parallax();
         });
@@ -153,7 +100,7 @@ $fl = new Functions();
     <footer class="page-footer">
         <div class="footer-copyright">
             <div class="container">
-                © 2017
+                © 2014 Copyright Text
             </div>
         </div>
     </footer>
