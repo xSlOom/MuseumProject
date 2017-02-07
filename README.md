@@ -20,6 +20,8 @@ We are using these technologies :
   <li><a href="https://developers.google.com/maps/?hl=fr">Google Map API</a></li>
 </ul>
 
+<h1>Important...</h1>
+
 All files needed are uploaded on this Github. (Even the .sql ^_^)
 
 About the registered images in the database; It may be under copyright so be careful if you are going to use it on a server. (Yes, we got it from <a href="http://google.com">Google</a>.)
