@@ -29,6 +29,7 @@ We are using these technologies :
   <li><a href="http://php.net">PHP</a></li>
   <li><a href="https://jquery.com/">JQuery</a></li>
   <li><a href="https://developers.google.com/maps/?hl=fr">Google Map API</a></li>
+  <li><a href="http://tilotiti.github.io/jQuery-Google-Map/">Google Map JQuery (Embed map)</a></li>
 </ul>
 
 <h1 id="important">Important...</h1>
