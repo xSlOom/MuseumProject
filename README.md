@@ -8,10 +8,11 @@ You may have to edit the index.php and search.php files for the database connect
 ```
 $db = new Connection("localhost", "root", "", "musees");
 ```
-<p><strong>localhost</strong>: Your host name</p>
-<p><strong>root </strong>: Your username</p>
-<p><strong>blank space </strong>: Your password</p>
-<p><strong>musees </strong>: Your main database</p>
+<strong>localhost</strong>: Your host name <br />
+<strong>root </strong>: Your username<br />
+<strong>blank space </strong>: Your password<br />
+<strong>musees </strong>: Your main database
+
 <h1>Features</h1>
 We have added some options on search.php to search depending on:
 <ul>
