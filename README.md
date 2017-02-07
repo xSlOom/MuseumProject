@@ -21,7 +21,7 @@ $db = new Connection("localhost", "root", "", "musees");
 We have added some options on search.php to search depending on:
 <ul>
   <li>The city</li>
-  <li>The museum name</li>
+  <li>The museum name (if you don't click the checkbox)</li>
   <li>The department</li>
   <li>Postal code</li>
 </ul>
