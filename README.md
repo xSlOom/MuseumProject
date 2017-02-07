@@ -8,7 +8,7 @@ The file from <a href="http://gouv.fr">gouv.fr</a> is made in the XLSX format an
 <h1>Setup</h1>
 You don't know where to start ? No problem, we are here for it.
 
-You may have to edit the index.php and search.php files for the database connection with your informations and run it on your browser.
+You may have to edit the <strong>index.php</strong> and <strong>search.php</strong> files for the database connection with your informations which are located on the main foler and run it on your browser.
 ```
 $db = new Connection("localhost", "root", "", "musees");
 ```
