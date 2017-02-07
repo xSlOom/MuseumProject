@@ -6,7 +6,7 @@ The file from <a href="http://gouv.fr">gouv.fr</a> is made in the XLSX format an
 
 <strong>Note:</strong> Please read the "<a href="#important">important</a>" part before doing any actions with this project.
 <h1>Setup</h1>
-You may have to edit the index.php and search.php files for the database connection with your informations.
+You may have to edit the index.php and search.php files for the database connection with your informations and run it on your browser.
 ```
 $db = new Connection("localhost", "root", "", "musees");
 ```
@@ -14,8 +14,6 @@ $db = new Connection("localhost", "root", "", "musees");
 <strong>root </strong>: Your username<br />
 <strong>blank space </strong>: Your password<br />
 <strong>musees </strong>: Your main database
-
-And after run it on your browser!
 
 <h1>Features</h1>
 We have added some options on search.php to search depending on:
