@@ -17,20 +17,6 @@ class Functions {
         return $reg;
     }
 
-    public function getGoogle($localisation) {
-        $apiKey = "AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E";
-        $url    = "https://maps.googleapis.com/maps/api/geocode/json?address=" . str_replace(" ", "+", $localisation)  . "&key=" . $apiKey;
-        $json   = json_decode(file_get_contents($url), true);
-        return [$json[0]["geometry"]["localisation"]["lat"], $json[0]["geometry"]["localisation"]["lng"]];
-    }
-
-    public function loadMap($ville) {
-        $frame  = "<iframe ";
-        $frame  .= 'src="//www.google.com/maps/embed/v1/place?q=' . str_replace(" ", "+", $ville) . '&zoom=17&key=AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E"';
-        $frame  .= '></iframe>';
-        return $frame;
-    }
-
     public function searchByDep($string) {
         global $db;
         $query  = $db->pdo->query("SELECT * FROM musee WHERE nom_dep LIKE '%{$string}%'");
