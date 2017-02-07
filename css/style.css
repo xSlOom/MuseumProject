@@ -1,3 +1,29 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+}
+
+footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+}
+
 .parallax-container {
     height: 500px;
 }
@@ -19,12 +45,6 @@ nav li a:hover {
 .modal {
     width : 700px;
 }
-h4 {
-    font-weight:  bold;
-}
-h4 {
-    font-weight:  bold;
-}
 img {
     magin-left : 25%;
 }
@@ -35,11 +55,11 @@ h5 {
     height : 80px;
     line-height: 80px;
     vertical-align: middle;
-    font-size : 40px;
+    font-size : 19px;
 }
 .card .card-title {
-    font-size: 25px;
+    font-size : 19px;
     height : 80px;
     vertical-align: middle;
-    font-style: : bold;
+    font-style: bold;
 }
