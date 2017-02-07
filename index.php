@@ -17,7 +17,7 @@ $fl = new Functions();
                 height: 500px;
             }
 
-            .nav-wrapper {
+            .nav-wrapper, .page-footer {
                 background: #36163F !important;
             }
             nav li a {
@@ -37,7 +37,6 @@ $fl = new Functions();
     <body>
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo center">Logo</a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li><a href="#">Accueil</a></li>
                     <li><a href="#">Liste des musées</a></li>
@@ -60,30 +59,31 @@ $fl = new Functions();
                     $musee = $fl->getFourMusees();
                     for ($i = 0; $i < sizeof($musee); $i++):
                 ?>
-                        <div class="col s12 m6">
-                            <div class="card">
-                                <div class="card-content">
-                                    <span class="card-title"><?php echo $musee[$i]["nom_du_musee"]; ?></span>
-                                    <p><?php echo $musee[$i]["adr"]; ?> <br /> <?php echo $musee[$i]["cp"]; ?> <?php echo $musee[$i]["ville"]; ?></p>
-                                </div>
-                                <div class="card-action">
-                                    <a id="link" href="#modal<?php echo $i; ?>">En apprendre plus</a>
-                                </div>
-                            </div>
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title"><?php echo $musee[$i]["nom_du_musee"]; ?></span>
+                            <p><?php echo $musee[$i]["adresse"]; ?> <br /> <?php echo $musee[$i]["cp"]; ?> <?php echo $musee[$i]["ville"]; ?></p>
                         </div>
-                        <div id="modal<?php echo $i; ?>" class="modal">
-                            <div class="modal-content">
-                                <h5><?php echo $musee[$i]["nom_du_musee"]; ?></h5>
-                                <?php echo $fl->getImage($musee[$i]["nom_du_musee"] . " " . $musee[$i]["ville"]); ?>
-                                <p><strong>Adresse:</strong> <?php echo $musee[$i]["adr"]; ?>, <?php echo $musee[$i]["cp"]; ?> <?php echo $musee[$i]["ville"]; ?></p>
-                                <p><strong>Téléphone:</strong> 0<?php echo $musee[$i]["telephone"]; ?></p>
-                                <p><strong>Ouverture:</strong> <?php echo $musee[$i]["periode_ouverture"]; ?></p>
-                                <p><strong>Site web:</strong> <?php echo !empty($musee[$i]["site_web"]) ? $fl->text2Link($musee[$i]["site_web"]) : "Aucun site"; ?></p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
-                            </div>
+                        <div class="card-action">
+                            <a id="link" href="#modal<?php echo $i; ?>">En apprendre plus</a>
                         </div>
+                    </div>
+                </div>
+                <div id="modal<?php echo $i; ?>" class="modal">
+                    <div class="modal-content">
+                        <h5><?php echo $musee[$i]["nom_du_musee"]; ?></h5>
+                        <img src="<?php echo $musee[$i]["lien_image"]; ?>" />
+                        <p><strong>Adresse:</strong> <?php echo !empty($musee[$i]["adresse"]) ? $musee[$i]["adresse"] . "," : ""; ?><?php echo $musee[$i]["cp"]; ?> <?php echo $musee[$i]["ville"]; ?></p>
+                        <p><strong>Téléphone:</strong> 0<?php echo $musee[$i]["telephone"]; ?></p>
+                        <p><strong>Ouverture:</strong> <?php echo !empty($musee[$i]["periode_ouverture"]) ? $musee[$i]["periode_ouverture"] : "Y'a rien"; ?></p>
+                        <p><strong>Site web:</strong> <?php echo !empty($musee[$i]["site_web"]) ? $fl->text2Link($musee[$i]["site_web"]) : "Aucun site"; ?></p>
+                        <p><?php echo $fl->loadMap($musee[$i]["nom_du_musee"]. "," . $musee[$i]["ville"]); ?></p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+                    </div>
+                </div>
                 <?php endfor; ?>
             </div>
         </div>
@@ -94,5 +94,11 @@ $fl = new Functions();
             $('.parallax').parallax();
         });
     </script>
-    <footer></footer>
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2017
+            </div>
+        </div>
+    </footer>
 </html>
