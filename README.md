@@ -1,6 +1,7 @@
 # MuseumProject
 
 This project has for goal to get the informations of a specific museum with his address, number phone, city from a database.
+Note: Please read all the doc before doing any actions with this project.
 
 <h1>Features</h1>
 We have added some options on search.php to search depending on:
