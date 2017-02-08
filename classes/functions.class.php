@@ -24,6 +24,13 @@ class Functions {
         return $fetch;
     }
 
+    public function searchByCity($string) {
+        global $db;
+        $query  = $db->pdo->query("SELECT * FROM musee WHERE ville LIKE '%{$string}%'");
+        $fetch  = $query->fetchAll();
+        return $fetch;
+    }
+
     public function searchByCdp($string) {
         global $db;
         $array  = [];
