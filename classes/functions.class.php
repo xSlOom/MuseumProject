@@ -33,15 +33,9 @@ class Functions {
 
     public function searchByCdp($string) {
         global $db;
-        $array  = [];
-        $query  = $db->pdo->query("SELECT * FROM musee;");
+        $query  = $db->pdo->query("SELECT * FROM musee WHERE cp LIKE '%{$string}%'");
         $fetch  = $query->fetchAll();
-        for ($i = 0; $i < sizeof($fetch); $i++) {
-            if (substr($fetch[$i]["cp"], 0, 2) == substr($string, 0, 2)) {
-                array_push($array, $fetch[$i]);
-            }
-        }
-        return $array;
+        return $fetch;
     }
 
     public function searchAll($string) {
