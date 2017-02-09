@@ -41,41 +41,50 @@ $fl = new Functions();
         <div class="container">
             <div class="row">
                 <h4 class="center header">Rechercher un ou des musées...</h4>
-                <form class="col s12" method="post">
+                <form class="grid-example col s12" method="post">
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s12">
                             <input id="icon_prefix" type="text" id="nom" name="nom" class="validate">
                             <label for="icon_prefix">Rechercher ..</label>
                         </div>
-                        <div class="input-field col s6">
-                            <input type="radio" class="filled-in" id="dep" name="dep" />
+                        <div class="input-field col s12">
+                            <input type="radio" class="filled-in" id="dep" name="option" value="dep"/>
                             <label for="dep">Rechercher par département</label>
-                            <input type="radio" class="filled-in" id="dep1" name="cdp" />
-                            <label for="dep1">Rechercher par code postal</label>
-                            <input type="radio" class="filled-in" id="dep2" name="vl" />
-                            <label for="dep2">Rechercher par ville</label>
+                            <input type="radio" class="filled-in" id="cp" name="option" value="cp"/>
+                            <label for="cp">Rechercher par code postal</label>
+                            <input type="radio" class="filled-in" id="ville" name="option" value="ville"/>
+                            <label for="ville">Rechercher par ville</label>
+                        </div>
+                        <div class="input-field col s12" style="padding-top: 3%">
+                            <input type="submit" id="submit" class="waves-effect waves-light btn" value="search" />
                         </div>
                     </div>
                 </form>
                 <?php
                 if (isset($_POST)):
                     if (!empty($_POST["nom"])):
-                        if (isset($_POST["dep"])):
-                            $data   = $fl->searchByDep($_POST["nom"]);
-                        elseif (isset($_POST["cdp"])):
-                            $data   = $fl->searchByCdp($_POST["nom"]);
-                        elseif (isset($_POST["vl"])):
-                            $data   = $fl->searchByCity($_POST["nom"]);
-                        else:
-                            $data   = $fl->searchAll($_POST["nom"]);
-                        endif;
+                        $option = isset($_POST["option"]) ? strtolower($_POST["option"]) : "none";
+                        switch($option):
+                            case "dep":
+                                $data   = $fl->searchByDep($_POST["nom"]);
+                                break;
+                            case "cp":
+                                $data   = $fl->searchByCdp($_POST["nom"]);
+                                break;
+                            case "ville":
+                                $data   = $fl->searchByCity($_POST["nom"]);
+                            break;
+                            default:
+                                $data   = $fl->searchAll($_POST["nom"]);
+                            break;
+                         endswitch;
                         if (sizeof($data) < 1):
                             print "Nothing found..";
                         else:
                             print "<h4 class=\"center header\">". sizeof($data) . " resultat(s) trouvé(s): </h4>";
                             for ($i = 0; $i < sizeof($data); $i++):
                 ?>
-                <div class="col s12 m6">
+                <div class="col s12 m4">
                     <div class="card">
                         <div class="card-content">
                             <h5 class="card-title"><?php echo $data[$i]["nom_du_musee"]; ?></h5>
