@@ -30,6 +30,9 @@ footer {
 .nav-wrapper, .page-footer {
     background: #36163F !important;
 }
+.btn:hover, .btn-large:hover {
+    background: #36163F !important;
+}
 nav li a {
     color: #F5BA97;
 }
