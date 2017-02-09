@@ -13,9 +13,11 @@ class Connection {
     }
 
     function connect() {
-        $this->pdo = new PDO("mysql:host={$this->host};dbname={$this->db}", $this->username, $this->password, array(
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+        $this->pdo = new PDO("mysql:host={$this->host};dbname={$this->db}", $this->username, $this->password,
+            [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+            ]
         );
         return $this->pdo;
     }
