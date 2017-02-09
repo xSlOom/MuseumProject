@@ -84,13 +84,17 @@ $fl = new Functions();
                 $.ajax({
                     url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + adress + "&key=AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E",
                     success: function(result){
-                        var localisation = result.results[0]["geometry"]["location"];
-                        $("#map" + nid).googleMap();
-                        $("#map" + nid).addMarker({
-                            coords: [localisation["lat"], localisation["lng"]], // GPS coords
-                            title: '<h5>' + musee + ' </h5>', // Title
-                            text:  $("#adress" + nid + "").html().split('</strong>')[1] // HTML content
-                        });
+                        if (result.status == "ZERO_RESULTS") {
+                            $("#map" + nid).html("<h4>Map non visible.</h4>");
+                        } else {
+                            var localisation = result.results[0]["geometry"]["location"];
+                            $("#map" + nid).googleMap();
+                            $("#map" + nid).addMarker({
+                                coords: [localisation["lat"], localisation["lng"]], // GPS coords
+                                title: '<h5>' + musee + '</h5>', // Title
+                                text: $("#adress" + nid + "").html().split('</strong>')[1] // HTML content
+                            });
+                        }
                     }
                 });
             })

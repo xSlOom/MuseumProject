@@ -45,7 +45,7 @@ $fl = new Functions();
                 <form class="grid-example col s12" method="post">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="icon_prefix" type="text" id="nom" name="nom">
+                            <input id="icon_prefix" type="text" id="nom" name="nom" required>
                             <label for="icon_prefix">Rechercher ..</label>
                         </div>
                         <div class="input-field col s12">
@@ -57,7 +57,7 @@ $fl = new Functions();
                             <label for="ville">Rechercher par ville</label>
                         </div>
                         <div class="input-field col s12" style="padding-top: 3%">
-                            <input type="submit" id="submit" class="waves-effect waves-light btn" value="search" />
+                            <input type="submit" id="submit" class="waves-effect waves-light btn" value="Chercher" />
                         </div>
                     </div>
                 </form>
@@ -131,14 +131,17 @@ $fl = new Functions();
                 $.ajax({
                     url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + adress + "&key=AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E",
                     success: function(result){
-                        var localisation = result.results[0]["geometry"]["location"];
-                        $("#map" + nid).googleMap();
-                        $("#map" + nid).addMarker({
-                            coords: [localisation["lat"], localisation["lng"]],
-                            icon: 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png',
-                            title: '<h5>' + musee + ' </h5>', // Title
-                            text:  $("#adress" + nid + "").html().split('</strong>')[1] // HTML content
-                        });
+                        if (result.status == "ZERO_RESULTS") {
+                            $("#map" + nid).html("<h4>Map non visible.</h4>");
+                        } else {
+                            var localisation = result.results[0]["geometry"]["location"];
+                            $("#map" + nid).googleMap();
+                            $("#map" + nid).addMarker({
+                                coords: [localisation["lat"], localisation["lng"]], // GPS coords
+                                title: '<h5>' + musee + '</h5>', // Title
+                                text: $("#adress" + nid + "").html().split('</strong>')[1] // HTML content
+                            });
+                        }
                     }
                 });
             })
