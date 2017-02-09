@@ -29,7 +29,7 @@ We have added some options on search.php to search depending on:
 <h1>Technologies</h1>
 We are using these technologies :
 <ul>
-  <li><a href="http://materializecss.com/">Material Design</a></li>
+  <li><a href="http://materializecss.com/">Materialize</a></li>
   <li><a href="http://php.net">PHP</a></li>
   <li><a href="https://jquery.com/">JQuery</a></li>
   <li><a href="https://developers.google.com/maps/?hl=fr">Google Map API</a></li>
@@ -40,7 +40,7 @@ We are using these technologies :
 
 All files needed are uploaded on this Github. (Even the .sql ^_^)
 
-The current SQL is not fully updated (last update: 2015) with new regions/departments/museum name so feel free to update and do a pull request on there.
+The current SQL may NOT be fully updated with new regions/departments/museum name so feel free to update and do a pull request on there.
 
 About the registered images in the database; It may be under <a href="https://en.wikipedia.org/wiki/Copyright">COPYRIGHT</a> so be careful if you are going to use it on a server. And of course, we are <span style="color:#ff0000;font-weight: bold;">NOT</span> responsible for future actions.
 
