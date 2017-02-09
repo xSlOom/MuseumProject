@@ -64,27 +64,31 @@ $fl = new Functions();
                 if (isset($_POST)):
                     if (!empty($_POST["nom"])):
                         $option = isset($_POST["option"]) ? strtolower($_POST["option"]) : "none";
-                        switch($option):
-                            case "dep":
-                                $data   = $fl->searchByDep($_POST["nom"]);
+                        if ((isset($_POST["option"])) && ($_POST["option"] == "cp") && (!is_numeric($_POST["nom"]))):
+                            $data   = $fl->searchAll2($_POST["nom"]);
+                        else:
+                            switch($option):
+                                case "dep":
+                                    $data   = $fl->searchByDep($_POST["nom"]);
+                                    break;
+                                case "cp":
+                                    $data   = $fl->searchByCdp($_POST["nom"]);
+                                    break;
+                                case "ville":
+                                    $data   = $fl->searchByCity($_POST["nom"]);
                                 break;
-                            case "cp":
-                                $data   = $fl->searchByCdp($_POST["nom"]);
+                                default:
+                                    $data   = $fl->searchAll($_POST["nom"]);
                                 break;
-                            case "ville":
-                                $data   = $fl->searchByCity($_POST["nom"]);
-                            break;
-                            default:
-                                $data   = $fl->searchAll($_POST["nom"]);
-                            break;
-                         endswitch;
+                             endswitch;
+                        endif;
                         if (sizeof($data) < 1):
                             print "Nothing found..";
                         else:
                             print "<h4 class=\"center header\">". sizeof($data) . " resultat(s) trouvé(s): </h4>";
                             for ($i = 0; $i < sizeof($data); $i++):
                 ?>
-                <div class="col s12 m4">
+                <div class="col s12 m6">
                     <div class="card">
                         <div class="card-content">
                             <h5 class="card-title"><?php echo $data[$i]["nom_du_musee"]; ?></h5>
@@ -97,6 +101,7 @@ $fl = new Functions();
                 </div>
                 <div id="modal<?php echo $i; ?>" class="modal">
                     <div class="modal-content">
+                        <a href="#!" class=" waves-effect waves-light btn right">Modifier les informations</a>
                         <h5 id="musee<?php echo $i ; ?>"><?php echo $data[$i]["nom_du_musee"]; ?></h5>
                         <img src="<?php echo $data[$i]["lien_image"]; ?>" />
                         <p id="adress<?php echo $i ; ?>"><strong>Adresse:</strong> <?php echo !empty($data[$i]["adresse"]) ? $data[$i]["adresse"] . "," : ""; ?><?php echo $data[$i]["cp"]; ?> <?php echo $data[$i]["ville"]; ?></p>
@@ -130,7 +135,8 @@ $fl = new Functions();
                         var localisation = result.results[0]["geometry"]["location"];
                         $("#map" + nid).googleMap();
                         $("#map" + nid).addMarker({
-                            coords: [localisation["lat"], localisation["lng"]], // GPS coords
+                            coords: [localisation["lat"], localisation["lng"]],
+                            icon: 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png',
                             title: '<h5>' + musee + ' </h5>', // Title
                             text:  $("#adress" + nid + "").html().split('</strong>')[1] // HTML content
                         });

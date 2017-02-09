@@ -34,7 +34,171 @@ $(function() {
 				scrollwheel: params.scrollwheel,
 				streetViewControl: params.streetViewControl,
 				overviewMapControl: params.overviewMapControl,
-				mapTypeControl: params.mapTypeControl
+				mapTypeControl: params.mapTypeControl,
+				styles: [
+                    {
+                        "featureType": "water",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "hue": "#ff0000"
+                            },
+                            {
+                                "saturation": -78
+                            },
+                            {
+                                "lightness": 67
+                            },
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "hue": "#36183E"
+                            },
+                            {
+                                "saturation": 20
+                            },
+                            {
+                                "lightness": 0
+                            },
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "hue": "#FFC58D"
+                            },
+                            {
+                                "saturation": 0
+                            },
+                            {
+                                "lightness": -20
+                            },
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "hue": "#ff0000"
+                            },
+                            {
+                                "saturation": 0
+                            },
+                            {
+                                "lightness": 0
+                            },
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "hue": "#ff0000"
+                            },
+                            {
+                                "saturation": 0
+                            },
+                            {
+                                "lightness": 8
+                            },
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "hue": "#ff0000"
+                            },
+                            {
+                                "saturation": 10
+                            },
+                            {
+                                "lightness": 69
+                            },
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative.locality",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "hue": "#ff0000"
+                            },
+                            {
+                                "saturation": 7
+                            },
+                            {
+                                "lightness": 19
+                            },
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "hue": "#ff0000"
+                            },
+                            {
+                                "saturation": -93
+                            },
+                            {
+                                "lightness": 31
+                            },
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "hue": "#ff0000"
+                            },
+                            {
+                                "saturation": -93
+                            },
+                            {
+                                "lightness": -2
+                            },
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    }
+                ]
 
 			});
 

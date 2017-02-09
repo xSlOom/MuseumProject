@@ -44,4 +44,11 @@ class Functions {
         $fetch  = $query->fetchAll();
         return $fetch;
     }
+
+    public function searchAll2($string) {
+        global $db;
+        $query  = $db->pdo->query("SELECT * FROM musee WHERE nom_reg LIKE '%{$string}%' or nom_dep LIKE '%{$string}%' or ville LIKE '%{$string}%'");
+        $fetch  = $query->fetchAll();
+        return $fetch;
+    }
 }
