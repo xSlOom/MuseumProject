@@ -102,7 +102,7 @@ $fl = new Functions();
                 </div>
                 <div id="modal<?php echo $i; ?>" class="modal">
                     <div class="modal-content">
-                        <a href="#!" class=" waves-effect waves-light btn right">Modifier les informations</a>
+                        <!--<a href="#!" class=" waves-effect waves-light btn right">Modifier les informations</a>-->
                         <h5 id="musee<?php echo $i ; ?>"><?php echo $data[$i]["nom_du_musee"]; ?></h5>
                         <img src="<?php echo $data[$i]["lien_image"]; ?>" />
                         <p id="adress<?php echo $i ; ?>"><strong>Adresse:</strong> <?php echo !empty($data[$i]["adresse"]) ? $data[$i]["adresse"] . "," : ""; ?><?php echo $data[$i]["cp"]; ?> <?php echo $data[$i]["ville"]; ?></p>
@@ -112,7 +112,7 @@ $fl = new Functions();
                         <div id="map<?php echo $i; ?>" style="width: 100%; height: 300px;"></div>
                     </div>
                     <div class="modal-footer">
-                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-light btn">Fermer</a>
                     </div>
                 </div>
                 <?php endfor; ?>

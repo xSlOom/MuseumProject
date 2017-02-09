@@ -68,7 +68,7 @@ $fl = new Functions();
                             <div id="map<?php echo $i; ?>" style="width: 100%; height: 300px;"></div>
                         </div>
                         <div class="modal-footer">
-                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+                            <a href="#!" class=" modal-action modal-close waves-effect waves-light btn">Fermer</a>
                         </div>
                     </div>
                 <?php endfor; ?>
