@@ -13,6 +13,7 @@ $fl = new Functions();
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/materialize.min.css">
         <script src="js/jquery.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E"></script>
         <script type="text/javascript" src="js/jquery.googlemap.js"></script>
         <script src="js/materialize.min.js"></script>
@@ -26,8 +27,8 @@ $fl = new Functions();
                     <li><a href="search.php">Liste des musées</a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
-                    <li><a href="index.php">Accueil</a></li>
-                    <li><a href="search.php">Liste des musées</a></li>
+                    <li><a href="index.php"><i class="material-icons">home</i>Accueil</a></li>
+                    <li><a href="search.php"><i class="material-icons">search</i>Rechercher des musées</a></li>
                 </ul>
             </div>
         </nav>
@@ -80,7 +81,6 @@ $fl = new Functions();
             $(function() {
                 var adress = $("#adress" + nid + "").html().split('</strong>')[1].replace(/ /g, '+');
                 var musee = $("#musee" + nid + "").html();
-                console.log(musee);
                 $.ajax({
                     url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + adress + "&key=AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E",
                     success: function(result){
