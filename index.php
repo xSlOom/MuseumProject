@@ -104,7 +104,7 @@ $fl = new Functions();
     <footer class="page-footer">
         <div class="footer-copyright">
             <div class="container">
-                © 2017 Musée
+                © 2017 Musée - <a href="//github.com/xSlOom/MuseumProject">Open Source</a>
             </div>
         </div>
     </footer>
