@@ -12,7 +12,7 @@ $fl = new Functions();
         <title>Les musées de nos Régions</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/materialize.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="js/jquery.js"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSPF5q5m2uk0mcsHl48SFcCukZ7ksQY_E"></script>
         <script type="text/javascript" src="js/jquery.googlemap.js"></script>
         <script src="js/materialize.min.js"></script>
@@ -20,10 +20,14 @@ $fl = new Functions();
     <body>
         <nav>
             <div class="nav-wrapper">
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li><a href="index.php">Accueil</a></li>
                     <li><a href="search.php">Liste des musées</a></li>
-                    <li><a href="#">Ajouter un musée</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="index.php">Accueil</a></li>
+                    <li><a href="search.php">Liste des musées</a></li>
                 </ul>
             </div>
         </nav>
@@ -134,7 +138,7 @@ $fl = new Functions();
     <footer class="page-footer">
         <div class="footer-copyright">
             <div class="container">
-                © 2017
+                © 2017 Musée
             </div>
         </div>
     </footer>
