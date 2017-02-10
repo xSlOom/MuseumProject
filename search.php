@@ -64,7 +64,7 @@ $fl = new Functions();
                 <?php
                 if (isset($_POST)):
                     if (!empty($_POST["nom"])):
-						$nom = preg_replace("/[^a-zA-Z0-9s]/", "", $_POST["nom"]);
+			$nom = preg_replace("/[^a-zA-Z0-9s]/", "", $_POST["nom"]);
                         $option = isset($_POST["option"]) ? strtolower($_POST["option"]) : "none";
                         if ((isset($_POST["option"])) && ($_POST["option"] == "cp") && (!is_numeric($_POST["nom"]))):
                             $data   = $fl->searchAll2($nom);
