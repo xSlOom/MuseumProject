@@ -64,22 +64,23 @@ $fl = new Functions();
                 <?php
                 if (isset($_POST)):
                     if (!empty($_POST["nom"])):
+						$nom = preg_replace("/[^a-zA-Z0-9s]/", "", $_POST["nom"]);
                         $option = isset($_POST["option"]) ? strtolower($_POST["option"]) : "none";
                         if ((isset($_POST["option"])) && ($_POST["option"] == "cp") && (!is_numeric($_POST["nom"]))):
-                            $data   = $fl->searchAll2($_POST["nom"]);
+                            $data   = $fl->searchAll2($nom);
                         else:
                             switch($option):
                                 case "dep":
-                                    $data   = $fl->searchByDep($_POST["nom"]);
+                                    $data   = $fl->searchByDep($nom);
                                     break;
                                 case "cp":
-                                    $data   = $fl->searchByCdp($_POST["nom"]);
+                                    $data   = $fl->searchByCdp($nom);
                                     break;
                                 case "ville":
-                                    $data   = $fl->searchByCity($_POST["nom"]);
+                                    $data   = $fl->searchByCity($nom);
                                 break;
                                 default:
-                                    $data   = $fl->searchAll($_POST["nom"]);
+                                    $data   = $fl->searchAll($nom);
                                 break;
                              endswitch;
                         endif;
